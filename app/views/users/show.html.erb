@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+<%= @user.name %>, <%= @user.email %>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="span8">
+    <%= render 'follow_form' if signed_in? %>
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+  <section>
+  <h1>
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+  </h1>
+  </section>
+  </aside>
+  <div class="span8">
+  <% if @user.microposts.any? %>
+  <h3>Microposts
+  <ol class="microposts.any?">
+  <%= render @microposts %>
+  </ol>
+  <%= will_paginate @microposts %>
+  <% end %>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
